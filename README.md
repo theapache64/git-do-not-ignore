@@ -45,6 +45,24 @@ java -jar /path/to/git-do-not-ignore.jar "/path/of/the/file"
 java -jar git-do-not-ignore.jar "aDir/anotherDir/someOtherDir/aDir/bDir/cDir/a.txt"
 ```
 
+### Output
+
+```
+!aDir/
+aDir/*
+!aDir/anotherDir/
+aDir/anotherDir/*
+!aDir/anotherDir/someOtherDir/
+aDir/anotherDir/someOtherDir/*
+!aDir/anotherDir/someOtherDir/aDir/
+aDir/anotherDir/someOtherDir/aDir/*
+!aDir/anotherDir/someOtherDir/aDir/bDir/
+aDir/anotherDir/someOtherDir/aDir/bDir/*
+!aDir/anotherDir/someOtherDir/aDir/bDir/cDir/
+aDir/anotherDir/someOtherDir/aDir/bDir/cDir/*
+!aDir/anotherDir/someOtherDir/aDir/bDir/cDir/a.txt
+```
+
 ### Author
 
 theapache64
