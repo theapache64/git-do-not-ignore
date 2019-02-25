@@ -33,7 +33,7 @@ The above given `.gitignore` file will skip all dirs and files except `!aDir/ano
 
 ### Usage
 
-Download [download.jar](git-do-not-ignore.jar) , then execute below command
+Download [git-do-not-ignore.jar](git-do-not-ignore.jar) , then execute below command
 
 ```console
 java -jar /path/to/git-do-not-ignore.jar "/path/of/the/file"
