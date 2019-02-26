@@ -1,0 +1,15 @@
+plugins {
+    id 'kotlin2js' version '1.3.21'
+}
+
+group 'git-do-not-ignore'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-js"
+}
