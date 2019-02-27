@@ -1,5 +1,5 @@
 # git-do-not-ignore
-A simple console application to generate .gitignore rule to **not to ignore** a file
+A application to generate .gitignore rule to **not to ignore** a file
 
 ### What?
 
@@ -30,6 +30,12 @@ aDir/anotherDir/someOtherDir/aDir/bDir/cDir/*
 ```
 
 The above given `.gitignore` file will skip all dirs and files except `!aDir/anotherDir/someOtherDir/aDir/bDir/cDir/a.txt`
+
+## Web
+
+Goto [https://theapache64.github.io/git-do-not-ignore/](https://theapache64.github.io/git-do-not-ignore/) and simply paste your file path on the first input box
+
+## CLI
 
 ### Usage
 
