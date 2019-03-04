@@ -3,8 +3,10 @@ import kotlinx.html.dom.create
 import kotlinx.html.js.div
 import kotlinx.html.js.onKeyDownFunction
 import kotlinx.html.js.onKeyUpFunction
+import org.w3c.dom.DocumentReadyState
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLInputElement
+import org.w3c.dom.events.Event
 import org.w3c.dom.get
 import kotlin.browser.document
 import kotlin.browser.window
@@ -37,16 +39,10 @@ fun main() {
                         classes = "form-control"
                     ) {
                         id = "iFilePath"
+                        value = "aDir/anotherDir/someOtherDir/aDir/bDir/cDir/a.txt"
                         placeholder = "Paste your full file path here"
                         onKeyUpFunction = {
-                            val taOutput = document.getElementById("taOutput") as HTMLElement
-                            val input = (it.target as HTMLInputElement).value
-                            if (input.isNotEmpty()) {
-                                val output = GitDoNotIgnore.getDoNotIgnoreString(input)
-                                taOutput.innerText = output
-                            } else {
-                                taOutput.innerText = ""
-                            }
+                            genOutput((it.target as HTMLInputElement).value)
                         }
                     }
 
@@ -75,5 +71,22 @@ fun main() {
     }
 
     document.getElementsByTagName("body")[0]!!.appendChild(containerDiv)
+
+    document.addEventListener("DOMContentLoaded", {
+        val i = document.getElementById("iFilePath") as HTMLInputElement
+        genOutput(i.value)
+    })
+}
+
+private fun genOutput(input: String) {
+
+    val taOutput = document.getElementById("taOutput") as HTMLElement
+
+    if (input.isNotEmpty()) {
+        val output = GitDoNotIgnore.getDoNotIgnoreString(input)
+        taOutput.innerText = output
+    } else {
+        taOutput.innerText = ""
+    }
 }
 
