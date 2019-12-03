@@ -1,18 +1,14 @@
 import kotlinx.html.*
 import kotlinx.html.dom.create
 import kotlinx.html.js.div
-import kotlinx.html.js.onKeyDownFunction
 import kotlinx.html.js.onKeyUpFunction
-import org.w3c.dom.DocumentReadyState
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.HTMLInputElement
-import org.w3c.dom.events.Event
+import org.w3c.dom.HTMLTextAreaElement
 import org.w3c.dom.get
 import kotlin.browser.document
-import kotlin.browser.window
 
 fun main() {
-
 
     val containerDiv = document.create.div {
         // container
@@ -80,11 +76,12 @@ fun main() {
 
 private fun genOutput(input: String) {
 
-    val taOutput = document.getElementById("taOutput") as HTMLElement
+    val taOutput = document.getElementById("taOutput") as HTMLTextAreaElement
 
     if (input.isNotEmpty()) {
         val output = GitDoNotIgnore.getDoNotIgnoreString(input)
-        taOutput.innerText = output
+        println(output)
+        taOutput.value = output
     } else {
         taOutput.innerText = ""
     }

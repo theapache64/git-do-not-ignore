@@ -14,11 +14,11 @@ object GitDoNotIgnore {
 
             if (segment.index != (segments.size - 1)) {
                 // not last item
-                sb.append("!${segment.value}/").append("\n")
-                sb.append("${segment.value}/*").append("\n")
+                sb.append("!${segment.value}/\n")
+                sb.append("${segment.value}/*\n")
             } else {
                 // last item
-                sb.append("!${segment.value}").append("\n")
+                sb.append("!${segment.value}\n")
             }
         }
 
