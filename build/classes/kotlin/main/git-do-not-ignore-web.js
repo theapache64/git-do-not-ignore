@@ -10,6 +10,7 @@ this['git-do-not-ignore-web'] = function (_, Kotlin, $module$kotlinx_html_js) {
   var StringBuilder_init = Kotlin.kotlin.text.StringBuilder_init;
   var withIndex = Kotlin.kotlin.collections.withIndex_7wnvza$;
   var Kind_OBJECT = Kotlin.Kind.OBJECT;
+  var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_287e2$;
   var get_create = $module$kotlinx_html_js.kotlinx.html.dom.get_create_4wc2mh$;
   var Unit = Kotlin.kotlin.Unit;
   var h1 = $module$kotlinx_html_js.kotlinx.html.h1_vmej1w$;
@@ -24,10 +25,10 @@ this['git-do-not-ignore-web'] = function (_, Kotlin, $module$kotlinx_html_js) {
   var textArea = $module$kotlinx_html_js.kotlinx.html.textArea_b1tfd9$;
   var div_0 = $module$kotlinx_html_js.kotlinx.html.js.div_wkomt5$;
   var ensureNotNull = Kotlin.ensureNotNull;
+  var println = Kotlin.kotlin.io.println_s8jyv4$;
   function GitDoNotIgnore() {
     GitDoNotIgnore_instance = this;
   }
-  var ArrayList_init = Kotlin.kotlin.collections.ArrayList_init_287e2$;
   GitDoNotIgnore.prototype.getDoNotIgnoreString_61zpoe$ = function (filePath) {
     var tmp$;
     var folders = split(filePath, ['/']);
@@ -40,11 +41,11 @@ this['git-do-not-ignore-web'] = function (_, Kotlin, $module$kotlinx_html_js) {
     while (tmp$.hasNext()) {
       var segment = tmp$.next();
       if (segment.index !== (segments.size - 1 | 0)) {
-        sb.append_gw00v9$('!' + segment.value + '/').append_gw00v9$('\n');
-        sb.append_gw00v9$(segment.value + '/*').append_gw00v9$('\n');
+        sb.append_gw00v9$('!' + segment.value + '/' + '\n');
+        sb.append_gw00v9$(segment.value + '/*' + '\n');
       }
        else {
-        sb.append_gw00v9$('!' + segment.value).append_gw00v9$('\n');
+        sb.append_gw00v9$('!' + segment.value + '\n');
       }
     }
     return sb.toString();
@@ -145,10 +146,11 @@ this['git-do-not-ignore-web'] = function (_, Kotlin, $module$kotlinx_html_js) {
   }
   function genOutput(input) {
     var tmp$;
-    var taOutput = Kotlin.isType(tmp$ = document.getElementById('taOutput'), HTMLElement) ? tmp$ : throwCCE();
+    var taOutput = Kotlin.isType(tmp$ = document.getElementById('taOutput'), HTMLTextAreaElement) ? tmp$ : throwCCE();
     if (input.length > 0) {
       var output = GitDoNotIgnore_getInstance().getDoNotIgnoreString_61zpoe$(input);
-      taOutput.innerText = output;
+      println(output);
+      taOutput.value = output;
     }
      else {
       taOutput.innerText = '';
