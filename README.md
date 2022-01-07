@@ -1,5 +1,5 @@
 # git-do-not-ignore
-A application to generate .gitignore rule to **not to ignore** a file
+A web app to generate .gitignore rules to **not to ignore** a file
 
 ### What?
 
