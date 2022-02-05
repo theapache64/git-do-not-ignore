@@ -58,7 +58,6 @@ fun main() {
                     textArea(classes = "form-control") {
                         id = "taOutput"
                         placeholder = "Output will appear here"
-                        disabled = true
                         rows = "20"
                     }
                 }
