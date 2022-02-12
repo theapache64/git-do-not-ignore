@@ -14,7 +14,7 @@ fun main() {
 
             // heading
             h1 {
-                +"GitDoNotIgnore"
+                +"✏️ GitDoNotIgnore"
             }
 
             br()
@@ -25,7 +25,7 @@ fun main() {
                     // input
                     label {
                         htmlFor = "iFilePath"
-                        +"File path"
+                        +"🗄 File paths"
                     }
 
                     textArea(
@@ -38,7 +38,7 @@ fun main() {
                         }
                         +"""
                             aDir/anotherDir/someOtherDir/aDir/bDir/cDir/a.txt
-                            aDir/anotherDir/someOtherDir/aDir/bDir/cDir/b.txt
+                            aDir/anotherDir/someOtherDir/aDir/bDir/b.txt
                         """.trimIndent()
                     }
 
@@ -52,7 +52,7 @@ fun main() {
                 div("col-md-12") {
                     label {
                         htmlFor = "taOutput"
-                        +"Output"
+                        +"🖥 Output"
                     }
 
                     textArea(classes = "form-control") {
@@ -75,14 +75,30 @@ fun main() {
 
 private fun genOutput(filePaths: String) {
     val taOutput = document.getElementById("taOutput") as HTMLTextAreaElement
-    if(filePaths.isNotBlank()){
+    if (filePaths.isNotBlank()) {
         val output = StringBuilder()
         val filePathArr = filePaths.split("\n")
         for (filePath in filePathArr) {
             output.append(GitDoNotIgnore.getDoNotIgnoreString(filePath)).append("\n")
         }
-        taOutput.value = output.split("\n").filter { it.isNotBlank() }.toSet().joinToString(separator = "\n")
-    }else{
-        taOutput.innerText = ""
+        taOutput.value = output
+            .split("\n")
+            .filter { it.isNotBlank() }
+            .toSet()
+            .sortedBy {
+                if (it.contains(".")) {
+                    val endIndex = it.lastIndexOf('/') + 1
+                    if (it.length >= endIndex) {
+                        it.substring(0, endIndex).length
+                    } else {
+                        it.length
+                    }
+                } else {
+                    it.length
+                }
+            }
+            .joinToString(separator = "\n")
+    } else {
+        taOutput.value = ""
     }
 }
