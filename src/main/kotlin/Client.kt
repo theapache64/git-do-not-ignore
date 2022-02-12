@@ -3,7 +3,6 @@ import kotlinx.html.*
 import kotlinx.html.dom.create
 import kotlinx.html.js.div
 import kotlinx.html.js.onKeyUpFunction
-import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.HTMLTextAreaElement
 import org.w3c.dom.get
 
@@ -29,16 +28,18 @@ fun main() {
                         +"File path"
                     }
 
-                    input(
-                        type = InputType.text,
+                    textArea(
                         classes = "form-control"
                     ) {
                         id = "iFilePath"
-                        value = "aDir/anotherDir/someOtherDir/aDir/bDir/cDir/a.txt"
-                        placeholder = "Paste your full file path here"
+                        placeholder = "Paste your full file paths here"
                         onKeyUpFunction = {
-                            genOutput((it.target as HTMLInputElement).value)
+                            genOutput((it.target as HTMLTextAreaElement).value)
                         }
+                        +"""
+                            aDir/anotherDir/someOtherDir/aDir/bDir/cDir/a.txt
+                            aDir/anotherDir/someOtherDir/aDir/bDir/cDir/b.txt
+                        """.trimIndent()
                     }
 
                 }
@@ -67,20 +68,21 @@ fun main() {
     document.getElementsByTagName("body")[0]!!.appendChild(containerDiv)
 
     document.addEventListener("DOMContentLoaded", {
-        val i = document.getElementById("iFilePath") as HTMLInputElement
-        genOutput(i.value)
+        val i = document.getElementById("iFilePath") as HTMLTextAreaElement
+        genOutput(i.value.trim())
     })
 }
 
-private fun genOutput(input: String) {
-
+private fun genOutput(filePaths: String) {
     val taOutput = document.getElementById("taOutput") as HTMLTextAreaElement
-
-    if (input.isNotEmpty()) {
-        val output = GitDoNotIgnore.getDoNotIgnoreString(input)
-        println(output)
-        taOutput.value = output
-    } else {
+    if(filePaths.isNotBlank()){
+        val output = StringBuilder()
+        val filePathArr = filePaths.split("\n")
+        for (filePath in filePathArr) {
+            output.append(GitDoNotIgnore.getDoNotIgnoreString(filePath)).append("\n")
+        }
+        taOutput.value = output.split("\n").filter { it.isNotBlank() }.toSet().joinToString(separator = "\n")
+    }else{
         taOutput.innerText = ""
     }
 }
