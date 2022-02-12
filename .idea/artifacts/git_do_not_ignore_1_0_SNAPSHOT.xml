@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="git-do-not-ignore-1.0-SNAPSHOT">
+    <output-path>$PROJECT_DIR$/build/libs</output-path>
+    <root id="archive" name="git-do-not-ignore-1.0-SNAPSHOT.jar">
+      <element id="module-output" name="git-do-not-ignore.main" />
+    </root>
+  </artifact>
+</component>
