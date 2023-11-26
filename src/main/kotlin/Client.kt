@@ -1,4 +1,5 @@
 import kotlinx.browser.document
+import kotlinx.browser.window
 import kotlinx.html.*
 import kotlinx.html.dom.create
 import kotlinx.html.js.div
@@ -18,6 +19,7 @@ fun main() {
 
                 // <iframe src="" title="Sponsor theapache64" height="32" width="114" style=""></iframe>
                 iframe {
+                    onMouseOver = "fireSponsorOverEvent();"
                     src = "https://github.com/sponsors/theapache64/button"
                     title = "Sponsor theapache64"
                     height = "32"

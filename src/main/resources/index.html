@@ -17,6 +17,14 @@
       gtag('js', new Date());
 
       gtag('config', 'G-19T6S5J9CL');
+
+      function fireSponsorOverEvent(){
+        console.log("firing sponsor over");
+        gtag('event', 'click', {
+            'app_name': 'GitDoNotIgnore',
+            'link_id': 'sponsor'
+          });
+      }
     </script>
 </head>
 <body>
