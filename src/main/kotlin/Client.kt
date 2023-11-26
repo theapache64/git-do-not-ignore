@@ -15,7 +15,18 @@ fun main() {
             // heading
             h1 {
                 +"✏️ GitDoNotIgnore"
+
+                // <iframe src="" title="Sponsor theapache64" height="32" width="114" style=""></iframe>
+                iframe {
+                    src = "https://github.com/sponsors/theapache64/button"
+                    title = "Sponsor theapache64"
+                    height = "32"
+                    width = "114"
+                    style = "border: 0; border-radius: 6px; float:right;"
+                }
             }
+
+
 
             br()
 
